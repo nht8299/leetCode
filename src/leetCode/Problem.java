@@ -10,7 +10,7 @@ public class Problem {
         String number = Integer.toBinaryString(n);
         for (int i = 0; i < number.length(); i++) {
             System.out.println(number.charAt(i));
-            if ( number.charAt(i) == '1' ) {
+            if (number.charAt(i) == '1') {
                 result = result + 1;
             }
         }
@@ -19,13 +19,13 @@ public class Problem {
 
     public static double myPow(double x, int n) {
         double result = 1;
-        if ( x == 0 ) {
+        if (x == 0) {
             return 0;
         }
-        if ( x == 1 ) {
+        if (x == 1) {
             return 1;
         }
-        if ( n > 0 ) {
+        if (n > 0) {
             for (int i = 0; i < n; i++) {
                 result = result * x;
             }
@@ -50,7 +50,7 @@ public class Problem {
         List<Integer> list = new ArrayList<>();
         int result = 0;
         for (int i = 0; i < nums.length; i++) {
-            if ( !( list.contains(nums[i]) ) ) {
+            if (!(list.contains(nums[i]))) {
                 list.add(nums[i]);
             } else {
                 result = nums[i];
@@ -64,7 +64,7 @@ public class Problem {
         int result = 0;
         for (int i = 0; i < nums.length - 1; i++) {
             for (int j = i + 1; j < nums.length; j++) {
-                if ( nums[i] == nums[j] && ( i != j ) ) {
+                if (nums[i] == nums[j] && (i != j)) {
                     result = nums[i];
                 }
             }
@@ -87,7 +87,7 @@ public class Problem {
     public static int numberOfSteps(int num) {
         int count = 0;
         while (num != 0) {
-            if ( !( isOdd(num) ) ) {
+            if (!(isOdd(num))) {
                 num = num - 1;
                 count++;
             } else {
@@ -100,15 +100,15 @@ public class Problem {
 
     public static int minMoves(int target, int maxDoubles) {
         int count = 0;
-        if ( target == 1 ){
+        if (target == 1) {
             return count;
         }
-        if ( maxDoubles == 0 ){
+        if (maxDoubles == 0) {
             return count = target - 1;
         }
         do {
-            if ( maxDoubles != 0 ) {
-                if ( isOdd(target) ) {
+            if (maxDoubles != 0) {
+                if (isOdd(target)) {
                     target = target / 2;
                     maxDoubles--;
                 } else {
@@ -123,21 +123,23 @@ public class Problem {
     }
 
     public static boolean isOdd(int num) {
-        if ( num % 2 == 0 ) {
+        if (num % 2 == 0) {
             return true;
         } else return false;
     }
-        public int maxLength(List<String> arr) {
-            int highest = arr.get(0).length();
-            for (int i = 0; i < arr.size()-1; i++){
-                for (int j = i + 1;j < arr.size(); j++){
-                   if ( highest < arr.get(i).length() + arr.get(j).length()){
-                       highest = arr.get(i).length() + arr.get(j).length();
-                   }
+
+    public int maxLength(List<String> arr) {
+        int highest = arr.get(0).length();
+        for (int i = 0; i < arr.size() - 1; i++) {
+            for (int j = i + 1; j < arr.size(); j++) {
+                if (highest < arr.get(i).length() + arr.get(j).length()) {
+                    highest = arr.get(i).length() + arr.get(j).length();
                 }
             }
-            return highest;
         }
+        return highest;
+    }
+
     public static int romanToInt(String s) {
         Map<Character, Integer> characterToInt = new HashMap<>();
         characterToInt.put('I', 1);
@@ -234,13 +236,13 @@ public class Problem {
 
     public int[] twoSum(int[] nums, int target) {
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++){
-            for (int j = i +1; j < nums.length; j++){
-                if (nums[i] + nums [j] == target ){
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
                     result.add(i);
                     result.add(j);
-                    nums[i]= -1;
-                    nums[j]= -1;
+                    nums[i] = -1;
+                    nums[j] = -1;
                 }
             }
         }
@@ -251,17 +253,17 @@ public class Problem {
         List<Integer> result = new ArrayList<>();
         int sum = 0;
         List<Integer> soliderNumber = new ArrayList<>();
-        for (int row = 0; row < mat.length; row++){
-            for (int col = 0; col <mat[row].length; col ++){
-                if (mat[row][col] == 1){
-                    sum = sum + 1 ;
+        for (int row = 0; row < mat.length; row++) {
+            for (int col = 0; col < mat[row].length; col++) {
+                if (mat[row][col] == 1) {
+                    sum = sum + 1;
                 }
             }
             soliderNumber.add(sum);
         }
-        for (int i = 1; i < soliderNumber.size(); i ++){
-            if (soliderNumber.get(i) > soliderNumber.get(i-1));
-            result.add(soliderNumber.get(i -1));
+        for (int i = 1; i < soliderNumber.size(); i++) {
+            if (soliderNumber.get(i) > soliderNumber.get(i - 1)) ;
+            result.add(soliderNumber.get(i - 1));
         }
         return result.stream().mapToInt(i -> i).toArray();
     }
@@ -294,6 +296,30 @@ public class Problem {
 //        return RandomStringUtils.randomAlphanumeric(1).toUpperCase();
 //
 //    }
+
+    public static String multiply(String num1, String num2) {
+        if (!isNumeric(num1) && !isNumeric(num2)) {
+            return null;
+        } else {
+            if (Long.parseLong(num1) <= 0 || Long.parseLong(num2) <= 0) {
+                return "0";
+            }
+            return String.valueOf(Long.parseLong(num1) * Long.parseLong(num2));
+        }
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         int[] a = new int[5];
         a[0] = 3;
@@ -302,7 +328,7 @@ public class Problem {
         a[3] = 4;
         a[4] = 2;
 
-        System.out.println(minMoves(0, 0));
+        System.out.println(multiply("6913259244", "67153019"));
 
     }
 }
